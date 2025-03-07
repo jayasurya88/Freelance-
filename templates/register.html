@@ -1,0 +1,328 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register as {{ account_type|title }} - Freelenso{% endblock %}
+
+{% block extra_head %}
+<style>
+  .register-section {
+    padding: 80px 0;
+    min-height: calc(100vh - 250px);
+    background-color: #f8f9fa;
+  }
+  
+  .register-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(1, 41, 112, 0.1);
+    padding: 40px;
+    margin-bottom: 30px;
+  }
+  
+  .register-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .register-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #012970;
+    margin-bottom: 10px;
+  }
+  
+  .register-header p {
+    color: #6c757d;
+    font-size: 16px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: #012970;
+  }
+  
+  .form-control {
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    padding: 10px 15px;
+    width: 100%;
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 0 2px rgba(65, 84, 241, 0.25);
+    border-color: #4154f1;
+    outline: none;
+  }
+  
+  textarea.form-control {
+    height: auto;
+    min-height: 100px;
+  }
+  
+  .register-button {
+    background: #4154f1;
+    border: none;
+    padding: 12px 30px;
+    color: #fff;
+    border-radius: 4px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .register-button:hover {
+    background: #5969f3;
+  }
+  
+  .client-button {
+    background: #012970;
+  }
+  
+  .client-button:hover {
+    background: #014390;
+  }
+  
+  .form-text {
+    color: #6c757d;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .form-check {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .form-check-label {
+    margin-left: 8px;
+    color: #444;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #6c757d;
+  }
+  
+  .login-link a {
+    color: #4154f1;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .skill-tag {
+    background: #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .skill-tag i {
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .upload-area {
+    border: 2px dashed #e2e8f0;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .upload-area i {
+    font-size: 40px;
+    color: #4154f1;
+    margin-bottom: 10px;
+  }
+  
+  .upload-area p {
+    margin: 0;
+    color: #6c757d;
+  }
+  
+  .upload-area:hover {
+    border-color: #4154f1;
+  }
+</style>
+{% endblock %}
+%}
+
+{% block content %}
+<section class="register-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="register-card">
+          <div class="register-header">
+            <h2>Create Your {{ account_type|title }} Account</h2>
+            <p>Join Freelenso and start your journey today</p>
+          </div>
+          
+          <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <label for="first_name">First Name *</label>
+                <input type="text" id="first_name" name="first_name" class="form-control" required>
+              </div>
+              
+              <div class="col-md-6 form-group">
+                <label for="last_name">Last Name *</label>
+                <input type="text" id="last_name" name="last_name" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+                <small class="form-text">Must be at least 8 characters with letters, numbers, and special characters</small>
+              </div>
+              
+              <div class="col-md-6 form-group">
+                <label for="confirm_password">Confirm Password *</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="country">Country *</label>
+              <input type="text" id="country" name="country" class="form-control" required>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+              <label class="form-check-label" for="terms">
+                I agree to the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>
+              </label>
+            </div>
+            
+            <button type="submit" class="register-button {% if account_type == 'client' %}client-button{% endif %}">
+              Create Account
+            </button>
+          </form>
+        </div>
+        
+        <div class="login-link">
+          <p>Already have an account? <a href="{% url 'login_view' %}">Log In</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Handle skills tags for freelancers
+  {% if account_type == "freelancer" %}
+  document.addEventListener('DOMContentLoaded', function() {
+    const skillsInput = document.getElementById('skills_input');
+    const skillsContainer = document.getElementById('skills_container');
+    const skillsHidden = document.getElementById('skills');
+    
+    const skills = [];
+    
+    function updateSkillsValue() {
+      skillsHidden.value = JSON.stringify(skills);
+    }
+    
+    function addSkill(skill) {
+      if (skill && !skills.includes(skill) && skills.length < 10) {
+        skills.push(skill);
+        updateSkillsValue();
+        
+        const skillTag = document.createElement('span');
+        skillTag.className = 'skill-tag';
+        skillTag.innerHTML = skill + ' <i class="bi bi-x"></i>';
+        
+        const removeBtn = skillTag.querySelector('i');
+        removeBtn.addEventListener('click', function() {
+          const index = skills.indexOf(skill);
+          if (index > -1) {
+            skills.splice(index, 1);
+            updateSkillsValue();
+            skillsContainer.removeChild(skillTag);
+          }
+        });
+        
+        skillsContainer.appendChild(skillTag);
+        skillsInput.value = '';
+      }
+    }
+    
+    skillsInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        const skill = this.value.trim();
+        addSkill(skill);
+      }
+    });
+  });
+  {% endif %}
+  
+  // Handle file uploads
+  document.addEventListener('DOMContentLoaded', function() {
+    {% if account_type == "freelancer" %}
+    const profileUpload = document.getElementById('profile_upload');
+    const profileInput = document.getElementById('profile_picture');
+    
+    profileUpload.addEventListener('click', function() {
+      profileInput.click();
+    });
+    
+    profileInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        profileUpload.querySelector('p').textContent = this.files[0].name;
+      }
+    });
+    {% endif %}
+    
+    {% if account_type == "client" %}
+    const logoUpload = document.getElementById('logo_upload');
+    const logoInput = document.getElementById('company_logo');
+    
+    logoUpload.addEventListener('click', function() {
+      logoInput.click();
+    });
+    
+    logoInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        logoUpload.querySelector('p').textContent = this.files[0].name;
+      }
+    });
+    {% endif %}
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Join Freelenso - Choose Your Account Type{% endblock %}
+
+{% block extra_head %}
+<style>
+  .account-selection-section {
+    padding: 80px 0;
+    min-height: calc(100vh - 250px);
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+  }
+  
+  .selection-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .selection-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #012970;
+    margin-bottom: 15px;
+  }
+  
+  .selection-header p {
+    color: #6c757d;
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .account-type-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .account-type-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .account-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background-color: #f0f3ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .account-icon i {
+    font-size: 40px;
+    color: #4154f1;
+  }
+  
+  .account-type-card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #012970;
+    margin-bottom: 15px;
+  }
+  
+  .account-type-card p {
+    color: #6c757d;
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+  
+  .features-list {
+    text-align: left;
+    margin-bottom: 30px;
+    padding-left: 20px;
+  }
+  
+  .features-list li {
+    margin-bottom: 10px;
+    color: #444;
+  }
+  
+  .select-button {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 4px;
+    color: #fff;
+    background: #4154f1;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .select-button:hover {
+    background: #5969f3;
+  }
+  
+  .client-button {
+    background: #012970;
+  }
+  
+  .client-button:hover {
+    background: #014390;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 16px;
+    color: #6c757d;
+  }
+  
+  .login-link a {
+    color: #4154f1;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="account-selection-section">
+  <div class="container">
+    <div class="selection-header">
+      <h1>Join Freelenso Today</h1>
+      <p>Choose how you want to use Freelenso and start your journey</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="account-type-card">
+          <div class="account-icon">
+            <i class="bi bi-person-workspace"></i>
+          </div>
+          <h3>I'm a Freelancer</h3>
+          <p>Find work, showcase your portfolio, and connect with clients worldwide</p>
+          
+          <ul class="features-list">
+            <li>Create a professional profile</li>
+            <li>Bid on projects that match your skills</li>
+            <li>Secure payments through our platform</li>
+            <li>Build your reputation with client reviews</li>
+            <li>Access professional tools and resources</li>
+          </ul>
+          
+          <a href="{% url 'register' %}?type=freelancer" class="select-button">Sign Up as Freelancer</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="account-type-card">
+          <div class="account-icon">
+            <i class="bi bi-building"></i>
+          </div>
+          <h3>I'm a Client</h3>
+          <p>Hire talented freelancers, manage projects, and grow your business</p>
+          
+          <ul class="features-list">
+            <li>Post projects and receive proposals</li>
+            <li>Browse freelancer profiles and portfolios</li>
+            <li>Communicate directly with freelancers</li>
+            <li>Pay only when you're satisfied</li>
+            <li>Manage your projects efficiently</li>
+          </ul>
+          
+          <a href="{% url 'register' %}?type=client" class="select-button client-button">Sign Up as Client</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="login-link">
+      <p>Already have an account? <a href="{% url 'login_view' %}">Log In</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}

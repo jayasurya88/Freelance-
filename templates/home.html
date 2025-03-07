@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}FreeLenso - Professional Freelancing Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="hero" class="hero section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content" data-aos="fade-up">
+                <h1>Empowering Freelancers, Connecting Opportunities</h1>
+                <p>FreeLenso is your gateway to a world of professional freelancing. Find the perfect projects or talented professionals for your business.</p>
+                <div class="d-flex gap-3 mt-4">
+                    <a href="{% url 'account_selection' %}" class="btn btn-primary">Get Started</a>
+                    <a href="#services" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-6 hero-image" data-aos="fade-left">
+                <img src="{% static 'assets/img/hero-image.png' %}" alt="Freelancing Platform" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about section">
+    <div class="container">
+        <div class="section-header">
+            <h2>About FreeLenso</h2>
+            <p>Bridging Talent with Opportunity</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-6" data-aos="fade-right">
+                <img src="{% static 'assets/img/about-image.jpg' %}" alt="About FreeLenso" class="img-fluid">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">
+                <h3>Transforming the Freelance Ecosystem</h3>
+                <p>FreeLenso is designed to simplify and enhance the freelancing experience. We provide a robust platform that connects skilled professionals with businesses seeking top-tier talent.</p>
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> Seamless Project Matching</li>
+                    <li><i class="bi bi-check-circle"></i> Secure Payment Systems</li>
+                    <li><i class="bi bi-check-circle"></i> Comprehensive Profiles</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>Comprehensive Solutions for Freelancers and Businesses</p>
+        </div>
+        <div class="row gy-4">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="service-item">
+                    <div class="icon"><i class="bi bi-laptop"></i></div>
+                    <h3>Project Marketplace</h3>
+                    <p>Discover and bid on a wide range of projects across multiple domains and industries.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item">
+                    <div class="icon"><i class="bi bi-person-check"></i></div>
+                    <h3>Talent Matching</h3>
+                    <p>Advanced algorithms help businesses find the perfect freelance talent for their specific needs.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-item">
+                    <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                    <h3>Secure Transactions</h3>
+                    <p>Guaranteed secure payments and escrow services to protect both freelancers and clients.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section id="cta" class="cta section">
+    <div class="container">
+        <div class="row" data-aos="zoom-in">
+            <div class="col-12 text-center">
+                <h3>Ready to Start Your Freelancing Journey?</h3>
+                <p>Join thousands of professionals and businesses finding success on FreeLenso.</p>
+                <a href="{% url 'account_selection' %}" class="btn btn-primary">Create Your Account</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Optional: Add any page-specific JavaScript if needed
+    document.addEventListener('DOMContentLoaded', function() {
+        // AOS (Animate on Scroll) initialization
+        AOS.init({
+            duration: 800,
+            easing: 'slide'
+        });
+    });
+</script>
+{% endblock %}

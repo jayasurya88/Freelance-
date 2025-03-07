@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Freelancer Dashboard - Freelenso{% endblock %}
+
+{% block extra_head %}
+<style>
+  .dashboard-section {
+    padding: 80px 0;
+    min-height: calc(100vh - 250px);
+    background-color: #f8f9fa;
+  }
+
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #012970;
+    margin-bottom: 15px;
+  }
+
+  .dashboard-header p {
+    color: #6c757d;
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .dashboard-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .dashboard-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="dashboard-section">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Freelancer Dashboard</h1>
+      <p>Manage your projects, proposals, and account settings</p>
+    </div>
+    <div class="dashboard-content">
+      <div class="dashboard-card">
+        <h2>Welcome, {{ user.first_name }}</h2>
+        <p>Here's an overview of your recent activity:</p>
+        <!-- Add more dashboard content here -->
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

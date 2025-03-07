@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - FlexStart{% endblock %}
+
+{% block extra_head %}
+<style>
+  .login-section {
+    padding: 80px 0;
+    min-height: calc(100vh - 250px);
+    display: flex;
+    align-items: center;
+  }
+  
+  .login-card {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(1, 41, 112, 0.1);
+    background: #fff;
+  }
+  
+  .login-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #012970;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .login-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .login-form label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: #012970;
+  }
+  
+  .login-form input {
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    padding: 10px 15px;
+    width: 100%;
+  }
+  
+  .login-form input:focus {
+    box-shadow: 0 0 0 2px rgba(65, 84, 241, 0.25);
+    border-color: #4154f1;
+    outline: none;
+  }
+  
+  .login-button {
+    background: #4154f1;
+    border: none;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 4px;
+    width: 100%;
+    font-weight: 500;
+    height: 44px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .login-button:hover {
+    background: #5969f3;
+  }
+  
+  .forgot-password {
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+    color: #6c757d;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    color: #4154f1;
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  .register-link a {
+    color: #4154f1;
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="login-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="login-card">
+          <h2>Welcome Back</h2>
+          <form class="login-form" method="post" action="{% url 'login_view' %}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required class="form-control" placeholder="Enter your email">
+            </div>
+            
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" required class="form-control" placeholder="Enter your password">
+            </div>
+            
+            {% if error %}
+              <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            
+            <button type="submit" class="login-button">Login</button>
+            
+            <a href="" class="forgot-password">Forgot your password?</a>
+            
+            <div class="register-link">
+              <p>Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
