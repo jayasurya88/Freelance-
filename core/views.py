@@ -90,3 +90,14 @@ def freelance_dashboard(request):
 
 def client_dashboard(request):
     return render(request,'client_dashboard.html')
+
+
+
+from django.shortcuts import redirect
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('index')  # Replace 'home' with your actual home view name
