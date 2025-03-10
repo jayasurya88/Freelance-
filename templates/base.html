@@ -42,8 +42,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           {% if user.is_authenticated %}
-          <li>Authenticated as: {{ user.username }}</li>
-          <li>Account Type: {{ user.profile.account_type }}</li>
+          
           {% if user.profile.account_type == 'freelancer' %}
           <li><a href="{% url 'freelance_dashboard' %}">Home</a></li>
           <li><a href="#">Projects</a></li>

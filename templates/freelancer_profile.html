@@ -1,44 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <h1>{{ full_name }}'s Profile</h1>
-    {% if profile.profile_picture %}
-        <img src="{{ profile.profile_picture.url }}" alt="{{ full_name }}'s Profile Picture" class="img-thumbnail" style="width: 150px; height: 150px;">
-    {% else %}
-        <p>No profile picture uploaded.</p>
-    {% endif %}
-    <p><strong>Email:</strong> {{ profile.user.email }}</p>
+<div class="container py-4">
+    <div class="card shadow-lg p-4">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" alt="{{ full_name }}'s Profile Picture" 
+                         class="img-fluid rounded-circle border" style="width: 150px; height: 150px; object-fit: cover;">
+                {% else %}
+                    <div class="d-flex align-items-center justify-content-center" 
+                         style="width: 150px; height: 150px; border: 2px dashed #ccc; border-radius: 50%;">
+                        <span>No Image</span>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <h1 class="mb-3">{{ full_name }}'s Profile</h1>
+                <p><strong>Email:</strong> {{ profile.user.email }}</p>
+                {% if profile.professional_title %}
+                    <p><strong>Title:</strong> {{ profile.professional_title }}</p>
+                {% endif %}
+                {% if profile.skills %}
+                    <p><strong>Skills:</strong> {{ profile.skills }}</p>
+                {% endif %}
+                {% if profile.experience_level %}
+                    <p><strong>Experience:</strong> {{ profile.experience_level }}</p>
+                {% endif %}
+                {% if profile.portfolio %}
+                    <p><strong>Portfolio:</strong> <a href="{{ profile.portfolio }}" target="_blank">View Portfolio</a></p>
+                {% endif %}
+                {% if profile.certifications %}
+                    <p><strong>Certifications:</strong> {{ profile.certifications }}</p>
+                {% endif %}
+                <p><strong>Country:</strong> {{ profile.country }}</p>
+                <p><strong>Bio:</strong> {{ profile.bio }}</p>
 
-    {% if profile.professional_title %}
-        <p><strong>Professional Title:</strong> {{ profile.professional_title }}</p>
-    {% endif %}
-
-    {% if profile.skills %}
-        <p><strong>Skills:</strong> {{ profile.skills }}</p>
-    {% endif %}
-
-    {% if profile.experience_level %}
-        <p><strong>Experience Level:</strong> {{ profile.experience_level }}</p>
-    {% endif %}
-
-    {% if profile.portfolio %}
-        <p><strong>Portfolio:</strong> <a href="{{ profile.portfolio }}" target="_blank">{{ profile.portfolio }}</a></p>
-    {% endif %}
-
-    {% if profile.certifications %}
-        <p><strong>Certifications:</strong> {{ profile.certifications }}</p>
-    {% endif %}
-
-    <p><strong>Country:</strong> {{ profile.country }}</p>
-    <p><strong>Bio:</strong> {{ profile.bio }}</p>
-
-    {% if not profile.verified %}
-    <a href="{% url 'send_otp' %}" class="btn btn-warning mt-3">Verify Now</a>
-{% else %}
-    <p><span class="badge bg-success">Verified</span></p>
-{% endif %}
-
-
-    <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
+                {% if not profile.verified %}
+                    <a href="{% url 'send_otp' %}" class="btn btn-warning mt-2">Verify Now</a>
+                {% else %}
+                    <p><span class="badge bg-success">Verified</span></p>
+                {% endif %}
+                
+                <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-2">Edit Profile</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
