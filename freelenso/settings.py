@@ -143,3 +143,12 @@ import os
 
 MEDIA_URL = '/media/'  # URL to access media files (e.g., images, PDFs, etc.)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory where media files will be stored
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'jayasurya7879@gmail.com'
+EMAIL_HOST_PASSWORD = 'doxd wtis hvha rrki'  # Your generated app-specific password
+DEFAULT_FROM_EMAIL = 'Freelenso <jayasurya7879@gmail.com>'

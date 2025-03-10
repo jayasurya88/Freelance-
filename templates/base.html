@@ -41,35 +41,37 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-         
-          
           {% if user.is_authenticated %}
-            {% if user.profile.account_type == 'freelancer' %}
-              <li><a href="{% url 'freelance_dashboard' %}">Home</a></li>
-              <li><a href="#">Projects</a></li>
-              <li><a href="#">Proposals</a></li>
-              <li><a href="#">Messages</a></li>
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Settings</a></li>
-            {% elif user.profile.account_type == 'client' %}
-              <li><a href="{% url 'client_dashboard' %}">Home</a></li>
-              <li><a href="#">Projects</a></li>
-              <li><a href="#">Post a Project</a></li>
-              <li><a href="#">Proposals</a></li>
-              <li><a href="#">Messages</a></li>
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Settings</a></li>
-            {% endif %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li>Authenticated as: {{ user.username }}</li>
+          <li>Account Type: {{ user.profile.account_type }}</li>
+          {% if user.profile.account_type == 'freelancer' %}
+          <li><a href="{% url 'freelance_dashboard' %}">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Proposals</a></li>
+          <li><a href="#">Messages</a></li>
+          <li><a href="{% url 'profile_view' %}">Profile</a></li>
+          <li><a href="#">Settings</a></li>
+          {% elif user.profile.account_type == 'client' %}
+          <li><a href="{% url 'client_dashboard' %}">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Post a Project</a></li>
+          <li><a href="#">Proposals</a></li>
+          <li><a href="#">Messages</a></li>
+          <li><a href="{% url 'profile_view' %}">Profile</a></li>
+          <li><a href="#">Settings</a></li>
+          {% endif %}
+
+          <li><a href="{% url 'logout' %}">Logout</a></li>
           {% else %}
-            <li><a href="{% url 'login_view' %}">Login</a></li>
+          <li><a href="{% url 'login_view' %}">Login</a></li>
           {% endif %}
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
+
       {% if not user.is_authenticated %}
-        <a class="btn-getstarted flex-md-shrink-0" href="{% url 'account_selection' %}">Get Started</a>
+      <a class="btn-getstarted flex-md-shrink-0" href="{% url 'account_selection' %}">Get Started</a>
       {% endif %}
     </div>
   </header>

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">{{ full_name }}'s Profile</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture.url }}" alt="{{ full_name }}'s Profile Picture"
+                class="img-thumbnail mb-4" style="width: 100%; max-width: 300px; height: auto;">
+            {% else %}
+            <p>No profile picture uploaded.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <p><strong>Email:</strong> {{ profile.user.email }}</p>
+
+            {% if profile.company_name %}
+            <p><strong>Company Name:</strong> {{ profile.company_name }}</p>
+            {% endif %}
+
+            {% if profile.website %}
+            <p><strong>Website:</strong> <a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a></p>
+            {% endif %}
+
+            {% if profile.industry %}
+            <p><strong>Industry:</strong> {{ profile.industry }}</p>
+            {% endif %}
+
+            <p><strong>Country:</strong> {{ profile.country }}</p>
+
+            {% if profile.project_budget %}
+            <p><strong>Project Budget:</strong> {{ profile.project_budget }}</p>
+            {% endif %}
+
+            {% if profile.project_frequency %}
+            <p><strong>Project Frequency:</strong> {{ profile.project_frequency }}</p>
+            {% endif %}
+
+            {% if profile.company_size %}
+            <p><strong>Company Size:</strong> {{ profile.company_size }}</p>
+            {% endif %}
+            {% if not profile.verified %}
+            <a href="{% url 'send_otp' %}" class="btn btn-warning mt-3">Verify Now</a>
+            {% else %}
+            <p><span class="badge bg-success">Verified</span></p>
+            {% endif %}
+            <p><strong>Bio:</strong> {{ profile.bio }}</p>
+
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

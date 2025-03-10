@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Edit Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Basic Info -->
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="form-control" value="{{ request.user.first_name }}">
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="form-control" value="{{ request.user.last_name }}">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" class="form-control" value="{{ profile.phone }}">
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" class="form-control" value="{{ profile.country }}">
+        </div>
+
+        <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea id="bio" name="bio" class="form-control">{{ profile.bio }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="profile_picture">Profile Picture</label>
+            <input type="file" id="profile_picture" name="profile_picture" class="form-control">
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail" style="width: 150px; height: 150px;">
+            {% endif %}
+        </div>
+
+        <!-- Freelancer Fields -->
+        {% if profile.account_type == 'freelancer' %}
+            <div class="form-group">
+                <label for="professional_title">Professional Title</label>
+                <input type="text" id="professional_title" name="professional_title" class="form-control" value="{{ profile.professional_title }}">
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <textarea id="skills" name="skills" class="form-control">{{ profile.skills }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="experience_level">Experience Level</label>
+                <input type="text" id="experience_level" name="experience_level" class="form-control" value="{{ profile.experience_level }}">
+            </div>
+            <div class="form-group">
+                <label for="portfolio">Portfolio</label>
+                <input type="url" id="portfolio" name="portfolio" class="form-control" value="{{ profile.portfolio }}">
+            </div>
+            <div class="form-group">
+                <label for="certifications">Certifications</label>
+                <textarea id="certifications" name="certifications" class="form-control">{{ profile.certifications }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="hourly_rate">Hourly Rate</label>
+                <input type="text" id="hourly_rate" name="hourly_rate" class="form-control" value="{{ profile.hourly_rate }}">
+            </div>
+            <div class="form-group">
+                <label for="availability_status">Availability Status</label>
+                <input type="text" id="availability_status" name="availability_status" class="form-control" value="{{ profile.availability_status }}">
+            </div>
+            <div class="form-group">
+                <label for="preferred_tools">Preferred Tools</label>
+                <textarea id="preferred_tools" name="preferred_tools" class="form-control">{{ profile.preferred_tools }}</textarea>
+            </div>
+        {% endif %}
+
+        <!-- Client Fields -->
+        {% if profile.account_type == 'client' %}
+            <div class="form-group">
+                <label for="company_name">Company Name</label>
+                <input type="text" id="company_name" name="company_name" class="form-control" value="{{ profile.company_name }}">
+            </div>
+            <div class="form-group">
+                <label for="website">Website</label>
+                <input type="url" id="website" name="website" class="form-control" value="{{ profile.website }}">
+            </div>
+            <div class="form-group">
+                <label for="industry">Industry</label>
+                <input type="text" id="industry" name="industry" class="form-control" value="{{ profile.industry }}">
+            </div>
+            <div class="form-group">
+                <label for="project_budget">Project Budget</label>
+                <input type="text" id="project_budget" name="project_budget" class="form-control" value="{{ profile.project_budget }}">
+            </div>
+            <div class="form-group">
+                <label for="project_frequency">Project Frequency</label>
+                <input type="text" id="project_frequency" name="project_frequency" class="form-control" value="{{ profile.project_frequency }}">
+            </div>
+            <div class="form-group">
+                <label for="company_size">Company Size</label>
+                <input type="text" id="company_size" name="company_size" class="form-control" value="{{ profile.company_size }}">
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+    </form>
+</div>
+{% endblock %}
